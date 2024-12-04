@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/wakewithme
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+jwt:
+  secret: b5f59337a612a2a7dc07328f3e7d1a04722967c7f06df20a499a7d3f91ff2a7e  # at least 512 bits
+  expirationMs: 86400000  # 24 hours
+
+logging:
+  level:
+    com.wakewithme.api: DEBUG
+    org.springframework.security: DEBUG

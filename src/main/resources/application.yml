@@ -1,0 +1,28 @@
+
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: wakewithme-api
+
+jwt:
+  expirationMs: 86400000  # 24 hours
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: method
+  packages-to-scan: com.wakewithme.api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,mappings
+  endpoint:
+    health:
+      show-details: always

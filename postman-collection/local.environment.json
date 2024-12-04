@@ -1,0 +1,18 @@
+{
+  "id": "local-env",
+  "name": "Local Environment",
+  "values": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:8080",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "AUTH_TOKEN",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    }
+  ]
+}
