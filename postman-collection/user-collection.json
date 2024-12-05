@@ -83,6 +83,48 @@
               "path": ["api", "users", "{{user_id}}"]
             }
           }
+        },
+        {
+          "name": "Update User Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AUTH_TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/users/{{user_id}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "users", "{{user_id}}"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"updated@example.com\",\n    \"password\": \"newpassword123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AUTH_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/users/{{user_id}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "users", "{{user_id}}"]
+            }
+          }
         }
       ]
     }

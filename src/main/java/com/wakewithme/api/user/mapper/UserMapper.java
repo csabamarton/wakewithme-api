@@ -2,6 +2,7 @@ package com.wakewithme.api.user.mapper;
 
 import com.wakewithme.api.user.entity.User;
 import com.wakewithme.api.user.web.request.UserDto;
+import com.wakewithme.api.user.web.request.UserUpdateRequest;
 import com.wakewithme.api.user.web.response.UserResponse;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -29,10 +30,12 @@ public class UserMapper {
                 .build();
     }
 
-    public void updateEntity(User user, UserDto userDto) {
-        user.setEmail(userDto.getEmail());
-        if (userDto.getPassword() != null) {
-            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+    public void updateEntity(User user, UserUpdateRequest userUpdateRequest) {
+        if (userUpdateRequest.getEmail() != null) {
+            user.setEmail(userUpdateRequest.getEmail());
+        }
+        if (userUpdateRequest.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(userUpdateRequest.getPassword()));
         }
     }
 }

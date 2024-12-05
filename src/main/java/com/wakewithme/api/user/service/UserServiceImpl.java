@@ -6,6 +6,7 @@ import com.wakewithme.api.user.mapper.UserMapper;
 import com.wakewithme.api.user.repository.UserRepository;
 import com.wakewithme.api.user.service.api.UserService;
 import com.wakewithme.api.user.web.request.UserDto;
+import com.wakewithme.api.user.web.request.UserUpdateRequest;
 import com.wakewithme.api.user.web.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
@@ -26,23 +28,25 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.toEntity(userDto);
         User savedUser = userRepository.save(user);
+
         return userMapper.toResponse(savedUser);
     }
 
     @Override
     public UserResponse getUserById(UUID id) {
-        User user = userRepository.findById(id)
+        return userRepository.findById(id)
+                .map(userMapper::toResponse)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
-        return userMapper.toResponse(user);
     }
 
     @Override
-    public UserResponse updateUser(UUID id, UserDto userDto) {
+    public UserResponse updateUser(UUID id, UserUpdateRequest userDto) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         userMapper.updateEntity(user, userDto);
         User updatedUser = userRepository.save(user);
+
         return userMapper.toResponse(updatedUser);
     }
 
@@ -56,8 +60,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse getUserByEmail(String email) {
-        User user = userRepository.findByEmail(email)
+        return userRepository.findByEmail(email)
+                .map(userMapper::toResponse)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
-        return userMapper.toResponse(user);
     }
 }
