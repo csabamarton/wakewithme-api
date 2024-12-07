@@ -19,6 +19,8 @@ public class UserMapper {
         return User.builder()
                 .email(userDto.getEmail())
                 .password(passwordEncoder.encode(userDto.getPassword()))
+                .phone(userDto.getPhone())
+                .username(userDto.getUsername())
                 .build();
     }
 
@@ -26,6 +28,8 @@ public class UserMapper {
         return UserResponse.builder()
                 .id(user.getId())
                 .email(user.getEmail())
+                .username(user.getUsername())
+                .phone(user.getPhone())
                 .createdAt(user.getCreatedAt())
                 .build();
     }
@@ -36,6 +40,12 @@ public class UserMapper {
         }
         if (userUpdateRequest.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(userUpdateRequest.getPassword()));
+        }
+        if (userUpdateRequest.getPhone() != null) {
+            user.setPhone(userUpdateRequest.getPhone());
+        }
+        if (userUpdateRequest.getUsername() != null) {
+            user.setUsername(userUpdateRequest.getUsername());
         }
     }
 }

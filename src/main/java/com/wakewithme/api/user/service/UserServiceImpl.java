@@ -26,6 +26,14 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("Email already exists");
         }
 
+        if (userDto.getUsername() != null && userRepository.existsByUsername(userDto.getUsername())) {
+            throw new IllegalArgumentException("Username already exists");
+        }
+
+        if (userDto.getPhone() != null && userRepository.existsByPhone(userDto.getPhone())) {
+            throw new IllegalArgumentException("Phone number already exists");
+        }
+
         User user = userMapper.toEntity(userDto);
         User savedUser = userRepository.save(user);
 

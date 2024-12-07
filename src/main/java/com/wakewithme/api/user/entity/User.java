@@ -26,7 +26,16 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "created_at")
+    @Column(unique = true)
+    private String phone;
+
+    @Column(unique = true)
+    private String username;
+
+    @Column(name = "is_registered", nullable = false)
+    private boolean isRegistered;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
@@ -36,6 +45,7 @@ public class User {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
+        isRegistered = true;
     }
 
     @PreUpdate

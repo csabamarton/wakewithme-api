@@ -21,8 +21,14 @@ public class UserDto {
     @Email(message = "Invalid email format")
     private String email;
 
-    @Schema(description = "User's email address", example = "user@example.com")
+    @Schema(description = "User's password", example = "password123")
     @NotBlank(message = "Password is required")
     @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
+
+    @Schema(description = "User's phone number", example = "1234567890")
+    private String phone;
+
+    @Schema(description = "User's username", example = "johndoe")
+    private String username;
 }
