@@ -40,6 +40,7 @@ public class SecurityConfig {
                         .requestMatchers("/webjars/**").permitAll()
 
                         .requestMatchers("/users/**").authenticated()
+                        .requestMatchers("/alarms/**").authenticated()
 
                         .anyRequest().authenticated()
                 )

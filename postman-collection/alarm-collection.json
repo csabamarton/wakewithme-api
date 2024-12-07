@@ -1,0 +1,90 @@
+{
+  "info": {
+    "name": "WakeWithMe - Alarm Management",
+    "description": "API endpoints for alarm management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Alarms",
+      "item": [
+        {
+          "name": "Save Alarm",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AUTH_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/alarms",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "alarms"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"datetime\": \"2024-12-08T07:30:00\",\n  \"recurringDays\": \"[false, true, true, true, true, true, false]\",\n  \"isRecurring\": true,\n  \"isEnabled\": true,\n  \"label\": \"Morning Alarm\",\n  \"visibility\": \"PRIVATE\",\n  \"timezone\": \"America/New_York\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Alarms by User ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AUTH_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/alarms/user/{{user_id}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "alarms", "user", "{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Alarm by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AUTH_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/alarms/{{alarm_id}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "alarms", "{{alarm_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Alarm",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{AUTH_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/alarms/{{alarm_id}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "alarms", "{{alarm_id}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
